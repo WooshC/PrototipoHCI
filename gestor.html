@@ -164,8 +164,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Librería para exportar a Excel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-    <!-- Librería para exportar a PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <!-- Apartado del Gestor Administrativo -->
@@ -199,7 +197,6 @@
     <!-- Botones para Exportar Datos -->
     <div class="export-buttons">
         <button onclick="exportToExcel()">Exportar a Excel</button>
-        <button onclick="exportToPDF()">Exportar a PDF</button>
     </div>
 
     <!-- Publicaciones Filtradas -->
@@ -345,25 +342,6 @@
             XLSX.utils.book_append_sheet(wb, ws, "Publicaciones");
             XLSX.writeFile(wb, "publicaciones.xlsx");
         }
-
-        // Exportar a PDF
-        function exportToPDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-            const publications = document.querySelectorAll('#filteredPublications .publication-item');
-            let y = 10;
-
-            publications.forEach(publication => {
-                if (publication.style.display !== 'none') {
-                    const details = publication.querySelector('.details').textContent;
-                    doc.text(details, 10, y);
-                    y += 30; // Espacio entre publicaciones
-                }
-            });
-
-            doc.save("publicaciones.pdf");
-        }
-
         // Marcar solicitud como resuelta
         function markAsResolved(button) {
             const assistanceItem = button.closest('.assistance-item');
