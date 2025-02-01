@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investigador Académico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF; /* Blanco */
+        }
+        header {
+            background-color: #003366; /* Azul oscuro */
+            color: #FFFFFF; /* Blanco */
+            padding: 20px 0;
+            text-align: center;
+        }
+        .author-section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #F5F5F5; /* Gris claro */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .author-section h2 {
+            color: #003366; /* Azul oscuro */
+            margin-bottom: 10px;
+        }
+        .author-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .author-info img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #003366; /* Azul oscuro */
+        }
+        .author-details {
+            flex: 1;
+        }
+        .author-details p {
+            margin: 5px 0;
+            color: #333333; /* Negro */
+        }
+        .container {
+            display: flex;
+            margin: 20px;
+            gap: 20px;
+        }
+        .form-container {
+            flex: 1;
+            background-color: #F5F5F5; /* Gris claro */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .stats-container {
+            flex: 1;
+            background-color: #F5F5F5; /* Gris claro */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #003366; /* Azul oscuro */
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333333; /* Negro */
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #CCCCCC; /* Gris */
+            border-radius: 4px;
+            background-color: #FFFFFF; /* Blanco */
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #003366; /* Azul oscuro */
+            color: #FFFFFF; /* Blanco */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #002244; /* Azul más oscuro */
+        }
+        .publications-list {
+            margin: 20px;
+            background-color: #F5F5F5; /* Gris claro */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .publication-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #FFFFFF; /* Blanco */
+            border: 1px solid #CCCCCC; /* Gris */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .publication-item .details {
+            flex: 1;
+        }
+        .publication-item .status-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: #FFFFFF; /* Blanco */
+        }
+        .status.pending {
+            background-color: #FFEB3B; /* Amarillo */
+            color: #000000; /* Negro */
+        }
+        .status.rejected {
+            background-color: #FF5252; /* Rojo */
+        }
+        .status.published {
+            background-color: #4CAF50; /* Verde */
+        }
+        .search-filter {
+            margin-bottom: 20px;
+        }
+        .search-filter input {
+            width: calc(100% - 120px);
+            padding: 10px;
+            border: 1px solid #CCCCCC; /* Gris */
+            border-radius: 4px;
+        }
+        .search-filter button {
+            width: 100px;
+            padding: 10px;
+            background-color: #003366; /* Azul oscuro */
+            color: #FFFFFF; /* Blanco */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .filters {
+            margin-bottom: 20px;
+        }
+        .filters button {
+            margin-right: 10px;
+            padding: 5px 10px;
+            background-color: #E0E0E0; /* Gris claro */
+            color: #333333; /* Negro */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .filters button.active {
+            background-color: #003366; /* Azul oscuro */
+            color: #FFFFFF; /* Blanco */
+        }
+        .chart {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 100%;
+        }
+        .tags {
+            margin-top: 10px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #E0E0E0; /* Gris claro */
+            color: #333333; /* Negro */
+            border-radius: 4px;
+            margin-right: 5px;
+            font-size: 12px;
+        }
+        .date-filter {
+            margin-bottom: 20px;
+        }
+        .date-filter input {
+            padding: 10px;
+            border: 1px solid #CCCCCC; /* Gris */
+            border-radius: 4px;
+        }
+        .download-icon {
+            color: #003366; /* Azul oscuro */
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .download-icon:hover {
+            color: #002244; /* Azul más oscuro */
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Plataforma de Gestión de Publicaciones Científicas</h1>
+    </header>
+
+    <!-- Apartado del Autor -->
+    <div class="author-section">
+        <h2>Información del Autor</h2>
+        <div class="author-info">
+            <img src="https://via.placeholder.com/100" alt="Foto del Autor">
+            <div class="author-details">
+                <p><strong>Nombre:</strong> Dr. Oscar Zambrano</p>
+                <p><strong>Afiliaciones:</strong> Universidad XYZ, Instituto ABC</p>
+                <p><strong>Publicaciones Totales:</strong> 15</p>
+                <p><strong>Índice h:</strong> 8</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Formulario para Publicar -->
+        <div class="form-container">
+            <h2>Registrar Nueva Publicación</h2>
+            <form id="publicationForm">
+                <label for="titulo">Título de la Publicación:</label>
+                <input type="text" id="titulo" name="titulo" required>
+
+                <label for="doi">DOI:</label>
+                <input type="text" id="doi" name="doi" required>
+
+                <label for="afiliaciones">Afiliaciones:</label>
+                <textarea id="afiliaciones" name="afiliaciones" rows="4" required></textarea>
+
+                <label for="archivo">Subir Archivo (PDF):</label>
+                <input type="file" id="archivo" name="archivo" accept=".pdf">
+
+                <label for="etiquetas">Etiquetas:</label>
+                <input type="text" id="etiquetas" name="etiquetas" placeholder="Ej: Ciencia y Tecnología, Medicina">
+
+                <button type="submit">Registrar Publicación</button>
+            </form>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="stats-container">
+            <h2>Estadísticas hasta 2025</h2>
+            <canvas id="statsChart" class="chart"></canvas>
+        </div>
+    </div>
+
+    <!-- Buscador, Filtros y Filtro por Fecha -->
+    <div class="publications-list">
+        <h2>Publicaciones Registradas</h2>
+        <div class="search-filter">
+            <input type="text" id="searchInput" placeholder="Buscar por título, DOI o palabra clave">
+            <button onclick="searchPublications()">Buscar</button>
+        </div>
+        <div class="filters">
+            <button onclick="filterPublications('all')" class="active">Todas</button>
+            <button onclick="filterPublications('pending')">Pendientes</button>
+            <button onclick="filterPublications('published')">Publicadas</button>
+            <button onclick="filterPublications('rejected')">Rechazadas</button>
+        </div>
+        <div class="date-filter">
+            <label for="startDate">Fecha de Inicio:</label>
+            <input type="date" id="startDate">
+            <label for="endDate">Fecha de Fin:</label>
+            <input type="date" id="endDate">
+            <button onclick="filterByDate()">Filtrar por Fecha</button>
+        </div>
+        <div id="publications">
+            <!-- Ejemplo de Publicación -->
+            <div class="publication-item" data-status="pending" data-date="2025-01-31">
+                <div class="details">
+                    <strong>Título:</strong> Análisis de Seguridad en Redes 5G<br>
+                    <strong>DOI:</strong> 10.1234/5678<br>
+                    <strong>Afiliaciones:</strong> Universidad XYZ, Instituto ABC<br>
+                    <strong>Fecha:</strong> 31/01/2025<br>
+                    <div class="tags">
+                        <span class="tag">Ciencia y Tecnología</span>
+                        <span class="tag">Ingeniería</span>
+                    </div>
+                </div>
+                <div class="status-container">
+                    <span class="status pending">Pendiente en aprobar</span>
+                    <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
+                </div>
+            </div>
+            <div class="publication-item" data-status="published" data-date="2025-02-15">
+                <div class="details">
+                    <strong>Título:</strong> Machine Learning aplicado a la Medicina<br>
+                    <strong>DOI:</strong> 10.4321/8765<br>
+                    <strong>Afiliaciones:</strong> Universidad XYZ<br>
+                    <strong>Fecha:</strong> 15/02/2025<br>
+                    <div class="tags">
+                        <span class="tag">Medicina</span>
+                        <span class="tag">Inteligencia Artificial</span>
+                    </div>
+                </div>
+                <div class="status-container">
+                    <span class="status published">Publicado</span>
+                    <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
+                </div>
+            </div>
+            <div class="publication-item" data-status="rejected" data-date="2025-03-10">
+                <div class="details">
+                    <strong>Título:</strong> Impacto del Cambio Climático en la Agricultura<br>
+                    <strong>DOI:</strong> 10.5678/9101<br>
+                    <strong>Afiliaciones:</strong> Instituto ABC<br>
+                    <strong>Fecha:</strong> 10/03/2025<br>
+                    <div class="tags">
+                        <span class="tag">Medio Ambiente</span>
+                        <span class="tag">Agricultura</span>
+                    </div>
+                </div>
+                <div class="status-container">
+                    <span class="status rejected">Rechazado</span>
+                    <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Gráfico de Estadísticas
+        const ctx = document.getElementById('statsChart').getContext('2d');
+        const statsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+                datasets: [{
+                    label: 'Número de Publicaciones',
+                    data: [3, 5, 7, 4, 6, 8],
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Manejo del Formulario
+        document.getElementById('publicationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const title = document.getElementById('titulo').value;
+            const doi = document.getElementById('doi').value;
+            const affiliations = document.getElementById('afiliaciones').value;
+            const tags = document.getElementById('etiquetas').value.split(',').map(tag => tag.trim());
+            const date = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+            const publicationItem = document.createElement('div');
+            publicationItem.classList.add('publication-item');
+            publicationItem.setAttribute('data-status', 'pending');
+            publicationItem.setAttribute('data-date', new Date().toISOString().split('T')[0]);
+            publicationItem.innerHTML = `
+                <div class="details">
+                    <strong>Título:</strong> ${title}<br>
+                    <strong>DOI:</strong> ${doi}<br>
+                    <strong>Afiliaciones:</strong> ${affiliations}<br>
+                    <strong>Fecha:</strong> ${date}<br>
+                    <div class="tags">
+                        ${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                </div>
+                <div class="status-container">
+                    <span class="status pending">Pendiente en aprobar</span>
+                    <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
+                </div>
+            `;
+            document.getElementById('publications').appendChild(publicationItem);
+
+            // Limpiar el formulario
+            document.getElementById('publicationForm').reset();
+        });
+
+        // Buscar Publicaciones
+        function searchPublications() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const publications = document.querySelectorAll('.publication-item');
+            publications.forEach(publication => {
+                const title = publication.querySelector('.details').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    publication.style.display = 'flex';
+                } else {
+                    publication.style.display = 'none';
+                }
+            });
+        }
+
+        // Filtrar Publicaciones por Estado
+        function filterPublications(status) {
+            const publications = document.querySelectorAll('.publication-item');
+            publications.forEach(publication => {
+                const publicationStatus = publication.getAttribute('data-status');
+                if (status === 'all' || publicationStatus === status) {
+                    publication.style.display = 'flex';
+                } else {
+                    publication.style.display = 'none';
+                }
+            });
+
+            // Actualizar botones activos
+            document.querySelectorAll('.filters button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.filters button[onclick="filterPublications('${status}')"]`).classList.add('active');
+        }
+
+        // Filtrar Publicaciones por Fecha
+        function filterByDate() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            const publications = document.querySelectorAll('.publication-item');
+            publications.forEach(publication => {
+                const publicationDate = publication.getAttribute('data-date');
+                if ((!startDate || publicationDate >= startDate) && (!endDate || publicationDate <= endDate)) {
+                    publication.style.display = 'flex';
+                } else {
+                    publication.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
