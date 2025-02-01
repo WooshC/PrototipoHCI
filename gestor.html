@@ -17,86 +17,363 @@
             padding: 20px 0;
             text-align: center;
         }
-        .container {
+        .manager-section {
             margin: 20px;
             padding: 20px;
             background-color: #F5F5F5; /* Gris claro */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h2 {
+        .manager-section h2 {
             color: #003366; /* Azul oscuro */
+            margin-bottom: 10px;
         }
-        .chart {
-            margin-top: 20px;
-            width: 100%;
-            max-width: 600px;
+        .manager-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
         }
-        button {
+        .manager-info img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #003366; /* Azul oscuro */
+        }
+        .manager-details {
+            flex: 1;
+        }
+        .manager-details p {
+            margin: 5px 0;
+            color: #333333; /* Negro */
+        }
+        .filter-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .filter-section input, .filter-section select {
+            flex: 1;
+            min-width: 150px;
+            padding: 10px;
+            border: 1px solid #CCCCCC; /* Gris */
+            border-radius: 4px;
+            background-color: #FFFFFF; /* Blanco */
+        }
+        .filter-section button {
             padding: 10px 20px;
             background-color: #003366; /* Azul oscuro */
             color: #FFFFFF; /* Blanco */
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
         }
-        button:hover {
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .export-buttons button {
+            padding: 10px 20px;
+            background-color: #003366; /* Azul oscuro */
+            color: #FFFFFF; /* Blanco */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .export-buttons button:hover {
             background-color: #002244; /* Azul más oscuro */
+        }
+        .publications-list {
+            margin: 20px;
+            padding: 20px;
+            background-color: #F5F5F5; /* Gris claro */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .publications-list h2 {
+            color: #003366; /* Azul oscuro */
+        }
+        .publication-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #FFFFFF; /* Blanco */
+            border: 1px solid #CCCCCC; /* Gris */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .publication-item .details {
+            flex: 1;
+        }
+        .publication-item .actions {
+            display: flex;
+            gap: 10px;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: #FFFFFF; /* Blanco */
+        }
+        .status.pending {
+            background-color: #FFEB3B; /* Amarillo */
+            color: #000000; /* Negro */
+        }
+        .status.published {
+            background-color: #4CAF50; /* Verde */
+        }
+        .status.rejected {
+            background-color: #FF5252; /* Rojo */
+        }
+        .download-icon {
+            color: #003366; /* Azul oscuro */
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .download-icon:hover {
+            color: #002244; /* Azul más oscuro */
+        }
+        .assistance-section {
+            margin: 20px;
+            padding: 20px;
+            background-color: #F5F5F5; /* Gris claro */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .assistance-section h2 {
+            color: #003366; /* Azul oscuro */
+        }
+        .assistance-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #FFFFFF; /* Blanco */
+            border: 1px solid #CCCCCC; /* Gris */
+        }
+        .assistance-item .details {
+            margin-bottom: 10px;
+        }
+        .assistance-item .actions {
+            display: flex;
+            gap: 10px;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Librería para exportar a Excel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <!-- Librería para exportar a PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <header>
-        <h1>Magaly Hidalgo - Gestor Administrativo</h1>
+        <h1>Plataforma de Gestión de Publicaciones Científicas</h1>
     </header>
-    <div class="container">
-        <h2>Gestión Centralizada de Datos</h2>
-        <form>
-            <label for="filtro">Filtrar por:</label>
-            <select id="filtro" name="filtro">
-                <option value="facultad">Facultad</option>
-                <option value="area">Área de Investigación</option>
-                <option value="fecha">Fecha</option>
-            </select>
 
-            <button type="submit">Aplicar Filtro</button>
-        </form>
+    <!-- Apartado del Gestor Administrativo -->
+    <div class="manager-section">
+        <h2>Información del Gestor Administrativo</h2>
+        <div class="manager-info">
+            <img src="https://via.placeholder.com/100" alt="Foto del Gestor">
+            <div class="manager-details">
+                <p><strong>Nombre:</strong> Magaly Hidalgo</p>
+                <p><strong>Rol:</strong> Gestión de Indicadores Académicos</p>
+            </div>
+        </div>
+    </div>
 
-        <h2>Estadísticas de Publicaciones</h2>
-        <canvas id="statsChart" class="chart"></canvas>
+    <!-- Filtros para Publicaciones -->
+    <div class="filter-section">
+        <input type="text" id="filterArea" placeholder="Filtrar por área">
+        <select id="filterUniversidad" onchange="loadFacultades()">
+            <option value="">Filtrar por universidad</option>
+            <option value="Universidad Politécnica Nacional">Universidad Politécnica Nacional</option>
+            <option value="Universidad Central del Ecuador">Universidad Central del Ecuador</option>
+            <option value="Universidad San Francisco de Quito">Universidad San Francisco de Quito</option>
+        </select>
+        <select id="filterFacultad">
+            <option value="">Filtrar por facultad</option>
+            <!-- Las facultades se cargarán dinámicamente -->
+        </select>
+        <button onclick="filterPublications()">Filtrar</button>
+    </div>
 
-        <h2>Exportar Datos</h2>
-        <button>Exportar a Excel</button>
-        <button>Exportar a PDF</button>
+    <!-- Botones para Exportar Datos -->
+    <div class="export-buttons">
+        <button onclick="exportToExcel()">Exportar a Excel</button>
+        <button onclick="exportToPDF()">Exportar a PDF</button>
+    </div>
+
+    <!-- Publicaciones Filtradas -->
+    <div class="publications-list">
+        <h2>Publicaciones Filtradas</h2>
+        <div id="filteredPublications">
+            <!-- Ejemplo de Publicación -->
+            <div class="publication-item" data-area="Ciencia y Tecnología" data-facultad="Ingeniería en Sistemas" data-universidad="Universidad Politécnica Nacional">
+                <div class="details">
+                    <strong>Título:</strong> Machine Learning aplicado a la Medicina<br>
+                    <strong>DOI:</strong> 10.4321/8765<br>
+                    <strong>Fecha:</strong> 15/02/2025<br>
+                    <strong>Área:</strong> Ciencia y Tecnología<br>
+                    <strong>Facultad:</strong> Ingeniería en Sistemas<br>
+                    <strong>Universidad:</strong> Universidad Politécnica Nacional<br>
+                </div>
+                <div class="actions">
+                    <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
+                </div>
+            </div>
+            <div class="publication-item" data-area="Ingeniería" data-facultad="Ingeniería Civil" data-universidad="Universidad Politécnica Nacional">
+                <div class="details">
+                    <strong>Título:</strong> Análisis de Seguridad en Redes 5G<br>
+                    <strong>DOI:</strong> 10.1234/5678<br>
+                    <strong>Fecha:</strong> 31/01/2025<br>
+                    <strong>Área:</strong> Ingeniería<br>
+                    <strong>Facultad:</strong> Ingeniería Civil<br>
+                    <strong>Universidad:</strong> Universidad Politécnica Nacional<br>
+                </div>
+                <div class="actions">
+                    <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apartado para Gestionar Publicaciones (Asistencia a Estudiantes) -->
+    <div class="assistance-section">
+        <h2>Gestión de Publicaciones (Asistencia a Estudiantes)</h2>
+        <div id="assistanceRequests">
+            <!-- Ejemplo de Solicitud de Asistencia -->
+            <div class="assistance-item">
+                <div class="details">
+                    <strong>Estudiante:</strong> Moisés Arequipa<br>
+                    <strong>Título de la Publicación:</strong> Machine Learning aplicado a la Medicina<br>
+                    <strong>Estado:</strong> Pendiente de revisión<br>
+                    <strong>Mensaje:</strong> Necesito ayuda para cumplir con los requisitos de la revista.<br>
+                </div>
+                <div class="actions">
+                    <button onclick="markAsResolved(this)">Marcar como Resuelto</button>
+                </div>
+            </div>
+            <div class="assistance-item">
+                <div class="details">
+                    <strong>Estudiante:</strong> Juan Pérez<br>
+                    <strong>Título de la Publicación:</strong> Análisis de Seguridad en Redes 5G<br>
+                    <strong>Estado:</strong> Pendiente de revisión<br>
+                    <strong>Mensaje:</strong> Requiero orientación sobre el formato de la publicación.<br>
+                </div>
+                <div class="actions">
+                    <button onclick="markAsResolved(this)">Marcar como Resuelto</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        const ctx = document.getElementById('statsChart').getContext('2d');
-        const statsChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Ingeniería', 'Ciencias Sociales', 'Medicina', 'Artes'],
-                datasets: [{
-                    label: 'Publicaciones por Área',
-                    data: [12, 8, 15, 5],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)'
-                    ],
-                    borderWidth: 1
-                }]
+        // Datos de facultades por universidad
+        const facultadesPorUniversidad = {
+            "Universidad Politécnica Nacional": [
+                "Ingeniería en Sistemas",
+                "Ingeniería Mecánica",
+                "Ingeniería Electrónica",
+                "Ingeniería Civil"
+            ],
+            "Universidad Central del Ecuador": [
+                "Medicina",
+                "Derecho",
+                "Arquitectura",
+                "Psicología"
+            ],
+            "Universidad San Francisco de Quito": [
+                "Administración de Empresas",
+                "Comunicación",
+                "Ingeniería Ambiental",
+                "Diseño Gráfico"
+            ]
+        };
+
+        // Cargar facultades según la universidad seleccionada
+        function loadFacultades() {
+            const universidad = document.getElementById('filterUniversidad').value;
+            const facultadSelect = document.getElementById('filterFacultad');
+            facultadSelect.innerHTML = '<option value="">Selecciona una facultad</option>';
+
+            if (universidad && facultadesPorUniversidad[universidad]) {
+                facultadesPorUniversidad[universidad].forEach(facultad => {
+                    const option = document.createElement('option');
+                    option.value = facultad;
+                    option.textContent = facultad;
+                    facultadSelect.appendChild(option);
+                });
             }
-        });
+        }
+
+        // Filtrar Publicaciones
+        function filterPublications() {
+            const area = document.getElementById('filterArea').value.toLowerCase();
+            const universidad = document.getElementById('filterUniversidad').value;
+            const facultad = document.getElementById('filterFacultad').value;
+
+            const publications = document.querySelectorAll('#filteredPublications .publication-item');
+            publications.forEach(publication => {
+                const pubArea = publication.getAttribute('data-area').toLowerCase();
+                const pubUniversidad = publication.getAttribute('data-universidad');
+                const pubFacultad = publication.getAttribute('data-facultad');
+
+                const matchArea = !area || pubArea.includes(area);
+                const matchUniversidad = !universidad || pubUniversidad === universidad;
+                const matchFacultad = !facultad || pubFacultad === facultad;
+
+                if (matchArea && matchUniversidad && matchFacultad) {
+                    publication.style.display = 'flex';
+                } else {
+                    publication.style.display = 'none';
+                }
+            });
+        }
+
+        // Exportar a Excel
+        function exportToExcel() {
+            const publications = document.querySelectorAll('#filteredPublications .publication-item');
+            const data = [];
+            publications.forEach(publication => {
+                if (publication.style.display !== 'none') {
+                    const details = publication.querySelector('.details').textContent;
+                    data.push(details.split('\n').map(line => line.trim()));
+                }
+            });
+
+            const ws = XLSX.utils.aoa_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Publicaciones");
+            XLSX.writeFile(wb, "publicaciones.xlsx");
+        }
+
+        // Exportar a PDF
+        function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            const publications = document.querySelectorAll('#filteredPublications .publication-item');
+            let y = 10;
+
+            publications.forEach(publication => {
+                if (publication.style.display !== 'none') {
+                    const details = publication.querySelector('.details').textContent;
+                    doc.text(details, 10, y);
+                    y += 30; // Espacio entre publicaciones
+                }
+            });
+
+            doc.save("publicaciones.pdf");
+        }
+
+        // Marcar solicitud como resuelta
+        function markAsResolved(button) {
+            const assistanceItem = button.closest('.assistance-item');
+            assistanceItem.style.display = 'none';
+            alert("Solicitud marcada como resuelta.");
+        }
     </script>
 </body>
 </html>

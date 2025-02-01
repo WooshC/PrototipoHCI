@@ -17,36 +17,505 @@
             padding: 20px 0;
             text-align: center;
         }
-        .container {
+        .student-section {
             margin: 20px;
             padding: 20px;
             background-color: #F5F5F5; /* Gris claro */
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h2 {
+        .student-section h2 {
             color: #003366; /* Azul oscuro */
+            margin-bottom: 10px;
+        }
+        .student-info {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        .student-info img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #003366; /* Azul oscuro */
+        }
+        .student-details {
+            flex: 1;
+        }
+        .student-details p {
+            margin: 5px 0;
+            color: #333333; /* Negro */
+        }
+        .container {
+            display: flex;
+            margin: 20px;
+            gap: 20px;
+        }
+        .form-container {
+            flex: 1;
+            background-color: #F5F5F5; /* Gris claro */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            color: #003366; /* Azul oscuro */
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333333; /* Negro */
+        }
+        .form-container input, .form-container select, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #CCCCCC; /* Gris */
+            border-radius: 4px;
+            background-color: #FFFFFF; /* Blanco */
+        }
+        .form-container button {
+            padding: 10px 20px;
+            background-color: #003366; /* Azul oscuro */
+            color: #FFFFFF; /* Blanco */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-container button:hover {
+            background-color: #002244; /* Azul más oscuro */
+        }
+        .publications-list {
+            flex: 1;
+            background-color: #F5F5F5; /* Gris claro */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .publications-list h2 {
+            color: #003366; /* Azul oscuro */
+        }
+        .publication-item {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #FFFFFF; /* Blanco */
+            border: 1px solid #CCCCCC; /* Gris */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .publication-item .details {
+            flex: 1;
+        }
+        .publication-item .status-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: #FFFFFF; /* Blanco */
+        }
+        .status.pending {
+            background-color: #FFEB3B; /* Amarillo */
+            color: #000000; /* Negro */
+        }
+        .status.published {
+            background-color: #4CAF50; /* Verde */
+        }
+        .status.rejected {
+            background-color: #FF5252; /* Rojo */
         }
         .notification {
             margin-top: 20px;
-            padding: 15px;
+            padding: 10px;
             background-color: #E0F7FA; /* Verde claro */
             border-left: 6px solid #00BCD4; /* Turquesa */
             color: #00796B; /* Verde oscuro */
         }
+        .download-icon {
+            color: #003366; /* Azul oscuro */
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .download-icon:hover {
+            color: #002244; /* Azul más oscuro */
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .tabs button {
+            flex: 1;
+            padding: 10px;
+            background-color: #E0E0E0; /* Gris claro */
+            color: #333333; /* Negro */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .tabs button.active {
+            background-color: #003366; /* Azul oscuro */
+            color: #FFFFFF; /* Blanco */
+        }
+        .search-filter {
+            margin-bottom: 20px;
+        }
+        .search-filter input {
+            width: calc(100% - 120px);
+            padding: 10px;
+            border: 1px solid #CCCCCC; /* Gris */
+            border-radius: 4px;
+        }
+        .search-filter button {
+            width: 100px;
+            padding: 10px;
+            background-color: #003366; /* Azul oscuro */
+            color: #FFFFFF; /* Blanco */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .interest-publications {
+            margin: 20px;
+            padding: 20px;
+            background-color: #F5F5F5; /* Gris claro */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .interest-publications h2 {
+            color: #003366; /* Azul oscuro */
+        }
+        .filter-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .filter-section input, .filter-section select {
+            flex: 1;
+            min-width: 150px;
+            padding: 10px;
+            border: 1px solid #CCCCCC; /* Gris */
+            border-radius: 4px;
+            background-color: #FFFFFF; /* Blanco */
+        }
+        .filter-section button {
+            padding: 10px 20px;
+            background-color: #003366; /* Azul oscuro */
+            color: #FFFFFF; /* Blanco */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <header>
-        <h1>Moisés Arequipa - Estudiante Investigador</h1>
-    </header>
-    <div class="container">
-        <h2>Guía Interactiva para Publicación</h2>
-        <p>Aquí encontrarás un asistente paso a paso para publicar en revistas indexadas.</p>
-
-        <div class="notification">
-            <strong>Notificación:</strong> Su artículo está en revisión. Fecha límite: 30/10/2023.
+    <!-- Apartado del Estudiante -->
+    <div class="student-section">
+        <h2>Información del Estudiante</h2>
+        <div class="student-info">
+            <img src="https://via.placeholder.com/100" alt="Foto del Estudiante">
+            <div class="student-details">
+                <p><strong>Nombre:</strong> Moisés Arequipa</p>
+                <p><strong>Carrera:</strong> Ingeniería en Desarrollo de Software</p>
+                <p><strong>Publicaciones Registradas:</strong> 2</p>
+            </div>
         </div>
     </div>
+
+    <!-- Contenedor Principal -->
+    <div class="container">
+        <!-- Formulario para Publicar -->
+        <div class="form-container">
+            <h2>Registrar Nueva Publicación</h2>
+            <form id="publicationForm">
+                <label for="tema">Selección de un Tema:</label>
+                <input type="text" id="tema" name="tema" placeholder="Elige un tema relevante y novedoso" required>
+
+                <label for="archivo">Subir Archivo (PDF):</label>
+                <input type="file" id="archivo" name="archivo" accept=".pdf" required>
+
+                <label for="asesor">Selección de un Asesor Académico:</label>
+                <select id="asesor" name="asesor" required>
+                    <option value="">Selecciona un asesor</option>
+                    <option value="Dr. Oscar Zambrano">Dr. Oscar Zambrano</option>
+                    <option value="Dra. María López">Dra. María López</option>
+                    <option value="Dr. Carlos Sánchez">Dr. Carlos Sánchez</option>
+                </select>
+
+                <label for="universidad">Universidad:</label>
+                <select id="universidad" name="universidad" required onchange="loadFacultades()">
+                    <option value="">Selecciona una universidad</option>
+                    <option value="Universidad Politécnica Nacional">Universidad Politécnica Nacional</option>
+                    <option value="Universidad Central del Ecuador">Universidad Central del Ecuador</option>
+                    <option value="Universidad San Francisco de Quito">Universidad San Francisco de Quito</option>
+                </select>
+
+                <label for="facultad">Facultad:</label>
+                <select id="facultad" name="facultad" required>
+                    <option value="">Selecciona una facultad</option>
+                    <!-- Las facultades se cargarán dinámicamente -->
+                </select>
+
+                <label for="etiquetas">Etiquetas:</label>
+                <input type="text" id="etiquetas" name="etiquetas" placeholder="Ej: Ciencia y Tecnología, Psicología" required>
+
+                <button type="submit">Enviar a la Revista</button>
+            </form>
+        </div>
+
+        <!-- Publicaciones Registradas -->
+        <div class="publications-list">
+            <h2>Publicaciones Registradas</h2>
+            <div class="tabs">
+                <button onclick="showTab('all')" class="active">Todas</button>
+                <button onclick="showTab('pending')">Pendientes</button>
+                <button onclick="showTab('published')">Publicadas</button>
+                <button onclick="showTab('rejected')">Rechazadas</button>
+            </div>
+            <div class="search-filter">
+                <input type="text" id="searchInput" placeholder="Buscar por título, DOI o palabra clave">
+                <button onclick="searchPublications()">Buscar</button>
+            </div>
+            <div id="publications">
+                <!-- Ejemplo de Publicación -->
+                <div class="publication-item" data-status="pending">
+                    <div class="details">
+                        <strong>Título:</strong> Machine Learning aplicado a la Medicina<br>
+                        <strong>DOI:</strong> 10.4321/8765<br>
+                        <strong>Fecha:</strong> 15/02/2025<br>
+                        <strong>Asesor:</strong> Dr. Oscar Zambrano<br>
+                        <strong>Etiquetas:</strong> Ciencia y Tecnología, Inteligencia Artificial<br>
+                        <strong>Universidad:</strong> Universidad Politécnica Nacional<br>
+                        <strong>Facultad:</strong> Ingeniería en Sistemas<br>
+                    </div>
+                    <div class="status-container">
+                        <span class="status pending">Pendiente en aprobar</span>
+                        <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+                <div class="publication-item" data-status="published">
+                    <div class="details">
+                        <strong>Título:</strong> Análisis de Seguridad en Redes 5G<br>
+                        <strong>DOI:</strong> 10.1234/5678<br>
+                        <strong>Fecha:</strong> 31/01/2025<br>
+                        <strong>Asesor:</strong> Dr. Oscar Zambrano<br>
+                        <strong>Etiquetas:</strong> Ciencia y Tecnología, Ingeniería<br>
+                        <strong>Universidad:</strong> Universidad Politécnica Nacional<br>
+                        <strong>Facultad:</strong> Ingeniería en Sistemas<br>
+                    </div>
+                    <div class="status-container">
+                        <span class="status published">Publicado</span>
+                        <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Publicaciones de Interés -->
+    <div class="interest-publications">
+        <h2>Publicaciones de Interés</h2>
+        <div class="filter-section">
+            <input type="text" id="filterTema" placeholder="Tema">
+            <input type="text" id="filterEtiquetas" placeholder="Etiquetas">
+            <select id="filterUniversidad">
+                <option value="">Universidad</option>
+                <option value="Universidad Politécnica Nacional">Universidad Politécnica Nacional</option>
+                <option value="Universidad Central del Ecuador">Universidad Central del Ecuador</option>
+                <option value="Universidad San Francisco de Quito">Universidad San Francisco de Quito</option>
+            </select>
+            <select id="filterFacultad">
+                <option value="">Facultad</option>
+                <!-- Las facultades se cargarán dinámicamente -->
+            </select>
+            <select id="filterAsesor">
+                <option value="">Asesor</option>
+                <option value="Dr. Oscar Zambrano">Dr. Oscar Zambrano</option>
+                <option value="Dra. María López">Dra. María López</option>
+                <option value="Dr. Carlos Sánchez">Dr. Carlos Sánchez</option>
+            </select>
+            <button onclick="filterInterestPublications()">Filtrar</button>
+        </div>
+        <div id="interestPublicationsList">
+            <!-- Ejemplo de Publicación de Interés -->
+            <div class="publication-item" data-tema="Machine Learning" data-etiquetas="Ciencia y Tecnología, Inteligencia Artificial" data-universidad="Universidad Politécnica Nacional" data-facultad="Ingeniería en Sistemas" data-asesor="Dr. Oscar Zambrano">
+                <div class="details">
+                    <strong>Título:</strong> Machine Learning aplicado a la Medicina<br>
+                    <strong>DOI:</strong> 10.4321/8765<br>
+                    <strong>Fecha:</strong> 15/02/2025<br>
+                    <strong>Asesor:</strong> Dr. Oscar Zambrano<br>
+                    <strong>Etiquetas:</strong> Ciencia y Tecnología, Inteligencia Artificial<br>
+                    <strong>Universidad:</strong> Universidad Politécnica Nacional<br>
+                    <strong>Facultad:</strong> Ingeniería en Sistemas<br>
+                </div>
+                <div class="status-container">
+                    <span class="status published">Publicado</span>
+                    <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
+                </div>
+            </div>
+            <div class="publication-item" data-tema="Seguridad en Redes" data-etiquetas="Ciencia y Tecnología, Ingeniería" data-universidad="Universidad Politécnica Nacional" data-facultad="Ingeniería en Sistemas" data-asesor="Dr. Oscar Zambrano">
+                <div class="details">
+                    <strong>Título:</strong> Análisis de Seguridad en Redes 5G<br>
+                    <strong>DOI:</strong> 10.1234/5678<br>
+                    <strong>Fecha:</strong> 31/01/2025<br>
+                    <strong>Asesor:</strong> Dr. Oscar Zambrano<br>
+                    <strong>Etiquetas:</strong> Ciencia y Tecnología, Ingeniería<br>
+                    <strong>Universidad:</strong> Universidad Politécnica Nacional<br>
+                    <strong>Facultad:</strong> Ingeniería en Sistemas<br>
+                </div>
+                <div class="status-container">
+                    <span class="status published">Publicado</span>
+                    <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Datos de facultades por universidad
+        const facultadesPorUniversidad = {
+            "Universidad Politécnica Nacional": [
+                "Ingeniería en Sistemas",
+                "Ingeniería Mecánica",
+                "Ingeniería Electrónica",
+                "Ingeniería Civil"
+            ],
+            "Universidad Central del Ecuador": [
+                "Medicina",
+                "Derecho",
+                "Arquitectura",
+                "Psicología"
+            ],
+            "Universidad San Francisco de Quito": [
+                "Administración de Empresas",
+                "Comunicación",
+                "Ingeniería Ambiental",
+                "Diseño Gráfico"
+            ]
+        };
+
+        // Cargar facultades según la universidad seleccionada
+        function loadFacultades() {
+            const universidad = document.getElementById('universidad').value;
+            const facultadSelect = document.getElementById('facultad');
+            facultadSelect.innerHTML = '<option value="">Selecciona una facultad</option>';
+
+            if (universidad && facultadesPorUniversidad[universidad]) {
+                facultadesPorUniversidad[universidad].forEach(facultad => {
+                    const option = document.createElement('option');
+                    option.value = facultad;
+                    option.textContent = facultad;
+                    facultadSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Mostrar pestañas
+        function showTab(status) {
+            const publications = document.querySelectorAll('.publication-item');
+            publications.forEach(publication => {
+                const publicationStatus = publication.getAttribute('data-status');
+                if (status === 'all' || publicationStatus === status) {
+                    publication.style.display = 'flex';
+                } else {
+                    publication.style.display = 'none';
+                }
+            });
+
+            // Actualizar botones activos
+            document.querySelectorAll('.tabs button').forEach(button => {
+                button.classList.remove('active');
+            });
+            document.querySelector(`.tabs button[onclick="showTab('${status}')"]`).classList.add('active');
+        }
+
+        // Buscar Publicaciones
+        function searchPublications() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const publications = document.querySelectorAll('.publication-item');
+            publications.forEach(publication => {
+                const title = publication.querySelector('.details').textContent.toLowerCase();
+                if (title.includes(searchTerm)) {
+                    publication.style.display = 'flex';
+                } else {
+                    publication.style.display = 'none';
+                }
+            });
+        }
+
+        // Filtrar Publicaciones de Interés
+        function filterInterestPublications() {
+            const tema = document.getElementById('filterTema').value.toLowerCase();
+            const etiquetas = document.getElementById('filterEtiquetas').value.toLowerCase();
+            const universidad = document.getElementById('filterUniversidad').value;
+            const facultad = document.getElementById('filterFacultad').value;
+            const asesor = document.getElementById('filterAsesor').value;
+
+            const publications = document.querySelectorAll('#interestPublicationsList .publication-item');
+            publications.forEach(publication => {
+                const pubTema = publication.getAttribute('data-tema').toLowerCase();
+                const pubEtiquetas = publication.getAttribute('data-etiquetas').toLowerCase();
+                const pubUniversidad = publication.getAttribute('data-universidad');
+                const pubFacultad = publication.getAttribute('data-facultad');
+                const pubAsesor = publication.getAttribute('data-asesor');
+
+                const matchTema = !tema || pubTema.includes(tema);
+                const matchEtiquetas = !etiquetas || pubEtiquetas.includes(etiquetas);
+                const matchUniversidad = !universidad || pubUniversidad === universidad;
+                const matchFacultad = !facultad || pubFacultad === facultad;
+                const matchAsesor = !asesor || pubAsesor === asesor;
+
+                if (matchTema && matchEtiquetas && matchUniversidad && matchFacultad && matchAsesor) {
+                    publication.style.display = 'flex';
+                } else {
+                    publication.style.display = 'none';
+                }
+            });
+        }
+
+        // Manejo del Formulario
+        document.getElementById('publicationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const title = document.getElementById('tema').value;
+            const asesor = document.getElementById('asesor').value;
+            const etiquetas = document.getElementById('etiquetas').value;
+            const universidad = document.getElementById('universidad').value;
+            const facultad = document.getElementById('facultad').value;
+            const date = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+            const publicationItem = document.createElement('div');
+            publicationItem.classList.add('publication-item');
+            publicationItem.setAttribute('data-status', 'pending');
+            publicationItem.innerHTML = `
+                <div class="details">
+                    <strong>Título:</strong> ${title}<br>
+                    <strong>Asesor:</strong> ${asesor}<br>
+                    <strong>Fecha:</strong> ${date}<br>
+                    <strong>Etiquetas:</strong> ${etiquetas}<br>
+                    <strong>Universidad:</strong> ${universidad}<br>
+                    <strong>Facultad:</strong> ${facultad}<br>
+                </div>
+                <div class="status-container">
+                    <span class="status pending">Pendiente en aprobar</span>
+                    <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
+                </div>
+            `;
+            document.getElementById('publications').appendChild(publicationItem);
+
+            // Limpiar el formulario
+            document.getElementById('publicationForm').reset();
+        });
+    </script>
 </body>
 </html>
