@@ -197,6 +197,30 @@
         .download-icon:hover {
             color: #002244; /* Azul más oscuro */
         }
+
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .logout-button button {
+            padding: 10px 20px;
+            background-color: #003366; /* Azul oscuro */
+            color: #FFFFFF; /* Blanco */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logout-button button:hover {
+            background-color: #002244; /* Azul más oscuro */
+        }
+        .logout-button button i {
+            font-size: 16px;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -204,6 +228,13 @@
 <body>
     <!-- Apartado del Autor -->
     <div class="author-section">
+        <!-- Botón de Cerrar Sesión -->
+        <div class="logout-button">
+            <button onclick="src=">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </button>
+        </div>
+
         <h2>Información del Autor</h2>
         <div class="author-info">
             <img src="imagenes/foto1.jpg" alt="Foto del Autor">
@@ -211,7 +242,7 @@
                 <p><strong>Nombre:</strong> Sandra Sanchez</p>
                 <p><strong>Afiliaciones:</strong> Universidad Politécnica Nacional</p>
                 <p><strong>Publicaciones Totales:</strong> 3</p>
-                <p><strong>Índice h:</strong> 8</p>
+                <p><strong>Índice h:</strong> 3</p>
             </div>
         </div>
     </div>
@@ -273,7 +304,7 @@
                 <div class="details">
                     <strong>Título:</strong> Análisis de Seguridad en Redes 5G<br>
                     <strong>DOI:</strong> 10.1234/5678<br>
-                    <strong>Afiliaciones:</strong> Universidad XYZ, Instituto ABC<br>
+                    <strong>Afiliaciones:</strong> Universidad Politécnica Nacional<br>
                     <strong>Fecha:</strong> 31/01/2025<br>
                     <div class="tags">
                         <span class="tag">Ciencia y Tecnología</span>
@@ -289,7 +320,7 @@
                 <div class="details">
                     <strong>Título:</strong> Machine Learning aplicado a la Medicina<br>
                     <strong>DOI:</strong> 10.4321/8765<br>
-                    <strong>Afiliaciones:</strong> Universidad XYZ<br>
+                    <strong>Afiliaciones:</strong> Universidad Politécnica Nacional<br>
                     <strong>Fecha:</strong> 15/02/2025<br>
                     <div class="tags">
                         <span class="tag">Medicina</span>
@@ -305,7 +336,7 @@
                 <div class="details">
                     <strong>Título:</strong> Impacto del Cambio Climático en la Agricultura<br>
                     <strong>DOI:</strong> 10.5678/9101<br>
-                    <strong>Afiliaciones:</strong> Instituto ABC<br>
+                    <strong>Afiliaciones:</strong>Universidad Politécnica Nacional<br>
                     <strong>Fecha:</strong> 10/03/2025<br>
                     <div class="tags">
                         <span class="tag">Medio Ambiente</span>
@@ -426,5 +457,12 @@
             });
         }
     </script>
+
+<script>
+    function logout() {
+        alert("Sesión cerrada correctamente.");
+        window.location.href = "index.html";
+    }
+</script>
 </body>
 </html>

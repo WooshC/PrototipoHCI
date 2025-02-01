@@ -159,6 +159,29 @@
             display: flex;
             gap: 10px;
         }
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .logout-button button {
+            padding: 10px 20px;
+            background-color: #003366; /* Azul oscuro */
+            color: #FFFFFF; /* Blanco */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logout-button button:hover {
+            background-color: #002244; /* Azul más oscuro */
+        }
+        .logout-button button i {
+            font-size: 16px;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -168,6 +191,12 @@
 <body>
     <!-- Apartado del Gestor Administrativo -->
     <div class="manager-section">
+          <!-- Botón de Cerrar Sesión -->
+          <div class="logout-button">
+            <button onclick="src=">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </button>
+        </div>
         <h2>Información del Gestor Administrativo</h2>
         <div class="manager-info">
             <img src="imagenes/foto2.jpg" alt="Foto del Gestor">
@@ -347,6 +376,12 @@
             const assistanceItem = button.closest('.assistance-item');
             assistanceItem.style.display = 'none';
             alert("Solicitud marcada como resuelta.");
+        }
+    </script>
+    <script>
+        function logout() {
+            alert("Sesión cerrada correctamente.");
+            window.location.href = "index.html";
         }
     </script>
 </body>
