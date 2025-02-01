@@ -221,6 +221,80 @@
         .logout-button button i {
             font-size: 16px;
         }
+
+        .report-container {
+    margin-top: 20px;
+    background-color: #FFFFFF; /* Blanco */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.report-container h3 {
+    color: #003366; /* Azul oscuro */
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #CCCCCC; /* Gris */
+}
+
+table th {
+    background-color: #003366; /* Azul oscuro */
+    color: #FFFFFF; /* Blanco */
+}
+
+table tr:hover {
+    background-color: #F5F5F5; /* Gris claro */
+}
+
+/* Estilos para las pestañas */
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #003366; /* Azul oscuro */
+}
+
+.tab-button {
+    padding: 10px 20px;
+    background-color: #F5F5F5; /* Gris claro */
+    border: none;
+    border-radius: 4px 4px 0 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 5px;
+    font-weight: bold;
+    color: #333333; /* Negro */
+}
+
+.tab-button.active {
+    background-color: #003366; /* Azul oscuro */
+    color: #FFFFFF; /* Blanco */
+}
+
+.tab-button:hover {
+    background-color: #002244; /* Azul más oscuro */
+    color: #FFFFFF; /* Blanco */
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    background-color: #FFFFFF; /* Blanco */
+    border-radius: 0 8px 8px 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.tab-content.active {
+    display: block;
+}
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -254,27 +328,58 @@
             <form id="publicationForm">
                 <label for="titulo">Título de la Publicación:</label>
                 <input type="text" id="titulo" name="titulo" required>
-
+    
                 <label for="doi">DOI:</label>
                 <input type="text" id="doi" name="doi" required>
-
+    
                 <label for="afiliaciones">Afiliaciones:</label>
                 <textarea id="afiliaciones" name="afiliaciones" rows="4" required></textarea>
-
+    
                 <label for="archivo">Subir Archivo (PDF):</label>
                 <input type="file" id="archivo" name="archivo" accept=".pdf">
-
+    
                 <label for="etiquetas">Etiquetas:</label>
                 <input type="text" id="etiquetas" name="etiquetas" placeholder="Ej: Ciencia y Tecnología, Medicina">
-
+    
                 <button type="submit">Registrar Publicación</button>
             </form>
         </div>
-
+    
         <!-- Estadísticas -->
         <div class="stats-container">
             <h2>Estadísticas hasta 2025</h2>
-            <canvas id="statsChart" class="chart"></canvas>
+    
+            <!-- Pestañas -->
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab('chartTab')">Gráfico</button>
+                <button class="tab-button" onclick="openTab('reportTab')">Reporte</button>
+            </div>
+    
+            <!-- Contenido de las Pestañas -->
+            <div id="chartTab" class="tab-content active">
+                <canvas id="statsChart" class="chart"></canvas>
+            </div>
+    
+            <div id="reportTab" class="tab-content">
+                <div class="report-container">
+                    <h3>Reporte de Indexación y Citas</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>DOI</th>
+                                <th>Citas</th>
+                                <th>Índice h</th>
+                                <th>Revista</th>
+                                <th>Fecha de Publicación</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reportTable">
+                            <!-- Datos dinámicos se llenarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -463,6 +568,75 @@
         alert("Sesión cerrada correctamente.");
         window.location.href = "index.html";
     }
+</script>
+<script>
+    // Datos de ejemplo para el reporte
+const reportData = [
+    {
+        title: "Análisis de Seguridad en Redes 5G",
+        doi: "10.1234/5678",
+        citations: 15,
+        hIndex: 3,
+        journal: "Journal of Network Security",
+        date: "31/01/2025"
+    },
+    {
+        title: "Machine Learning aplicado a la Medicina",
+        doi: "10.4321/8765",
+        citations: 25,
+        hIndex: 5,
+        journal: "Medical AI Review",
+        date: "15/02/2025"
+    },
+    {
+        title: "Impacto del Cambio Climático en la Agricultura",
+        doi: "10.5678/9101",
+        citations: 10,
+        hIndex: 2,
+        journal: "Environmental Science Today",
+        date: "27/02/2025"
+    }
+];
+
+// Función para llenar la tabla con los datos
+function fillReportTable() {
+    const reportTable = document.getElementById('reportTable');
+    reportTable.innerHTML = ''; // Limpiar la tabla antes de llenarla
+
+    reportData.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.title}</td>
+            <td>${item.doi}</td>
+            <td>${item.citations}</td>
+            <td>${item.hIndex}</td>
+            <td>${item.journal}</td>
+            <td>${item.date}</td>
+        `;
+        reportTable.appendChild(row);
+    });
+}
+
+// Llamar a la función para llenar la tabla al cargar la página
+fillReportTable();
+</script>
+
+<script>
+    // Función para cambiar entre pestañas
+// Función para cambiar entre pestañas
+function openTab(tabName) {
+    // Ocultar todos los contenidos de las pestañas
+    const tabContents = document.querySelectorAll('.tab-content');
+    tabContents.forEach(tab => tab.classList.remove('active'));
+
+    // Mostrar la pestaña seleccionada
+    document.getElementById(tabName).classList.add('active');
+
+    // Actualizar el estado de los botones de las pestañas
+    const tabButtons = document.querySelectorAll('.tab-button');
+    tabButtons.forEach(button => button.classList.remove('active'));
+    document.querySelector(`.tab-button[onclick="openTab('${tabName}')"]`).classList.add('active');
+}
 </script>
 </body>
 </html>
