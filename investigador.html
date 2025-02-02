@@ -4,298 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Investigador Académico</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #FFFFFF; /* Blanco */
-        }
-        .author-section {
-            margin: 20px;
-            padding: 20px;
-            background-color: #F5F5F5; /* Gris claro */
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .author-section h2 {
-            color: #003366; /* Azul oscuro */
-            margin-bottom: 10px;
-        }
-        .author-info {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-        .author-info img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 2px solid #003366; /* Azul oscuro */
-        }
-        .author-details {
-            flex: 1;
-        }
-        .author-details p {
-            margin: 5px 0;
-            color: #333333; /* Negro */
-        }
-        .container {
-            display: flex;
-            margin: 20px;
-            gap: 20px;
-        }
-        .form-container {
-            flex: 1;
-            background-color: #F5F5F5; /* Gris claro */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .stats-container {
-            flex: 1;
-            background-color: #F5F5F5; /* Gris claro */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h2 {
-            color: #003366; /* Azul oscuro */
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333333; /* Negro */
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #CCCCCC; /* Gris */
-            border-radius: 4px;
-            background-color: #FFFFFF; /* Blanco */
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #003366; /* Azul oscuro */
-            color: #FFFFFF; /* Blanco */
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #002244; /* Azul más oscuro */
-        }
-        .publications-list {
-            margin: 20px;
-            background-color: #F5F5F5; /* Gris claro */
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .publication-item {
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            background-color: #FFFFFF; /* Blanco */
-            border: 1px solid #CCCCCC; /* Gris */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .publication-item .details {
-            flex: 1;
-        }
-        .publication-item .status-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 5px;
-        }
-        .status {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 4px;
-            color: #FFFFFF; /* Blanco */
-        }
-        .status.pending {
-            background-color: #FFEB3B; /* Amarillo */
-            color: #000000; /* Negro */
-        }
-        .status.rejected {
-            background-color: #FF5252; /* Rojo */
-        }
-        .status.published {
-            background-color: #4CAF50; /* Verde */
-        }
-        .search-filter {
-            margin-bottom: 20px;
-        }
-        .search-filter input {
-            width: calc(100% - 120px);
-            padding: 10px;
-            border: 1px solid #CCCCCC; /* Gris */
-            border-radius: 4px;
-        }
-        .search-filter button {
-            width: 100px;
-            padding: 10px;
-            background-color: #003366; /* Azul oscuro */
-            color: #FFFFFF; /* Blanco */
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .filters {
-            margin-bottom: 20px;
-        }
-        .filters button {
-            margin-right: 10px;
-            padding: 5px 10px;
-            background-color: #E0E0E0; /* Gris claro */
-            color: #333333; /* Negro */
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .filters button.active {
-            background-color: #003366; /* Azul oscuro */
-            color: #FFFFFF; /* Blanco */
-        }
-        .chart {
-            margin-top: 20px;
-            width: 100%;
-            max-width: 100%;
-        }
-        .tags {
-            margin-top: 10px;
-        }
-        .tag {
-            display: inline-block;
-            padding: 5px 10px;
-            background-color: #E0E0E0; /* Gris claro */
-            color: #333333; /* Negro */
-            border-radius: 4px;
-            margin-right: 5px;
-            font-size: 12px;
-        }
-        .date-filter {
-            margin-bottom: 20px;
-        }
-        .date-filter input {
-            padding: 10px;
-            border: 1px solid #CCCCCC; /* Gris */
-            border-radius: 4px;
-        }
-        .download-icon {
-            color: #003366; /* Azul oscuro */
-            text-decoration: none;
-            font-size: 18px;
-        }
-        .download-icon:hover {
-            color: #002244; /* Azul más oscuro */
-        }
-
-        .logout-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-        }
-        .logout-button button {
-            padding: 10px 20px;
-            background-color: #003366; /* Azul oscuro */
-            color: #FFFFFF; /* Blanco */
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .logout-button button:hover {
-            background-color: #002244; /* Azul más oscuro */
-        }
-        .logout-button button i {
-            font-size: 16px;
-        }
-
-        .report-container {
-    margin-top: 20px;
-    background-color: #FFFFFF; /* Blanco */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.report-container h3 {
-    color: #003366; /* Azul oscuro */
-    margin-bottom: 15px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table th, table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #CCCCCC; /* Gris */
-}
-
-table th {
-    background-color: #003366; /* Azul oscuro */
-    color: #FFFFFF; /* Blanco */
-}
-
-table tr:hover {
-    background-color: #F5F5F5; /* Gris claro */
-}
-
-/* Estilos para las pestañas */
-.tabs {
-    display: flex;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #003366; /* Azul oscuro */
-}
-
-.tab-button {
-    padding: 10px 20px;
-    background-color: #F5F5F5; /* Gris claro */
-    border: none;
-    border-radius: 4px 4px 0 0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-right: 5px;
-    font-weight: bold;
-    color: #333333; /* Negro */
-}
-
-.tab-button.active {
-    background-color: #003366; /* Azul oscuro */
-    color: #FFFFFF; /* Blanco */
-}
-
-.tab-button:hover {
-    background-color: #002244; /* Azul más oscuro */
-    color: #FFFFFF; /* Blanco */
-}
-
-.tab-content {
-    display: none;
-    padding: 20px;
-    background-color: #FFFFFF; /* Blanco */
-    border-radius: 0 8px 8px 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.tab-content.active {
-    display: block;
-}
-    </style>
+    <link rel="stylesheet" href="estilos/estiloInvestigador.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -340,6 +49,25 @@ table tr:hover {
     
                 <label for="etiquetas">Etiquetas:</label>
                 <input type="text" id="etiquetas" name="etiquetas" placeholder="Ej: Ciencia y Tecnología, Medicina">
+
+                 <label for="revista">Revista para Indexar:</label>
+            <select id="revista" name="revista" required>
+                <option value="">Seleccione una revista</option>
+                <option value="araucaria">Araucaria. Revista Iberoamericana de Filosofía, Política, Humanidades y Relaciones Internacionales</option>
+                <option value="atalanta">Atalanta. Revista de las Letras Barrocas</option>
+                <option value="elia">ELIA: Estudios de Lingüística Inglesa Aplicada</option>
+                <option value="historia">Historia. Instituciones. Documentos</option>
+                <option value="ic_journal">IC Journal Revista Científica de Información y Comunicación</option>
+                <option value="laboratorio_arte">Laboratorio de Arte</option>
+                <option value="philologia_hispalensis">Philologia Hispalensis</option>
+                <option value="pixel_bit">Pixel-Bit</option>
+                <option value="proyecto_progreso_arquitectura">Proyecto, progreso, arquitectura</option>
+                <option value="revista_estudios_andaluces">Revista de Estudios Andaluces</option>
+                <option value="revista_estudios_norteamericanos">Revista de Estudios Norteamericanos</option>
+                <option value="revista_fuentes">Revista Fuentes</option>
+                <option value="spal">SPAL</option>
+                <option value="temas_americanistas">Temas Americanistas</option>
+            </select>
     
                 <button type="submit">Registrar Publicación</button>
             </form>
@@ -481,38 +209,42 @@ table tr:hover {
         });
 
         // Manejo del Formulario
-        document.getElementById('publicationForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const title = document.getElementById('titulo').value;
-            const doi = document.getElementById('doi').value;
-            const affiliations = document.getElementById('afiliaciones').value;
-            const tags = document.getElementById('etiquetas').value.split(',').map(tag => tag.trim());
-            const date = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+document.getElementById('publicationForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    
+    const title = document.getElementById('titulo').value;
+    const doi = document.getElementById('doi').value;
+    const affiliations = document.getElementById('afiliaciones').value;
+    const tags = document.getElementById('etiquetas').value.split(',').map(tag => tag.trim());
+    const revista = document.getElementById('revista').value;  // Obtener la revista seleccionada
+    const date = new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
 
-            const publicationItem = document.createElement('div');
-            publicationItem.classList.add('publication-item');
-            publicationItem.setAttribute('data-status', 'pending');
-            publicationItem.setAttribute('data-date', new Date().toISOString().split('T')[0]);
-            publicationItem.innerHTML = `
-                <div class="details">
-                    <strong>Título:</strong> ${title}<br>
-                    <strong>DOI:</strong> ${doi}<br>
-                    <strong>Afiliaciones:</strong> ${affiliations}<br>
-                    <strong>Fecha:</strong> ${date}<br>
-                    <div class="tags">
-                        ${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    </div>
-                </div>
-                <div class="status-container">
-                    <span class="status pending">Pendiente en aprobar</span>
-                    <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
-                </div>
-            `;
-            document.getElementById('publications').appendChild(publicationItem);
+    const publicationItem = document.createElement('div');
+    publicationItem.classList.add('publication-item');
+    publicationItem.setAttribute('data-status', 'pending');
+    publicationItem.setAttribute('data-date', new Date().toISOString().split('T')[0]);
+    publicationItem.innerHTML = `
+        <div class="details">
+            <strong>Título:</strong> ${title}<br>
+            <strong>DOI:</strong> ${doi}<br>
+            <strong>Afiliaciones:</strong> ${affiliations}<br>
+            <strong>Fecha:</strong> ${date}<br>
+            <strong>Revista Indexada:</strong> ${revista || 'No seleccionada'}<br>  <!-- Mostrar la revista -->
+            <div class="tags">
+                ${tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
+        </div>
+        <div class="status-container">
+            <span class="status pending">Pendiente en aprobar</span>
+            <a href="#" class="download-icon"><i class="fas fa-download"></i></a>
+        </div>
+    `;
+    document.getElementById('publications').appendChild(publicationItem);
 
-            // Limpiar el formulario
-            document.getElementById('publicationForm').reset();
-        });
+    // Limpiar el formulario
+    document.getElementById('publicationForm').reset();
+});
+
 
         // Buscar Publicaciones
         function searchPublications() {
