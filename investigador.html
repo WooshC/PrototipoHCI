@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="estilos/estiloInvestigador.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 <body>
     <!-- Apartado del Autor -->
@@ -112,26 +113,47 @@
         </div>
     </div>
 
-    <!-- Buscador, Filtros y Filtro por Fecha -->
-    <div class="publications-list">
-        <h2>Publicaciones Registradas</h2>
+    <div class="filters-container">
+        <!-- Buscador -->
         <div class="search-filter">
             <input type="text" id="searchInput" placeholder="Buscar por título, DOI o palabra clave">
-            <button onclick="searchPublications()">Buscar</button>
+            <button onclick="searchPublications()"><i class="fas fa-search"></i></button>
         </div>
+    
+        <!-- Filtros por Estado -->
         <div class="filters">
-            <button onclick="filterPublications('all')" class="active">Todas</button>
-            <button onclick="filterPublications('pending')">Pendientes</button>
-            <button onclick="filterPublications('published')">Publicadas</button>
-            <button onclick="filterPublications('rejected')">Rechazadas</button>
+            <button onclick="filterPublications('all')" class="active">
+                <i class="fas fa-list"></i> Todas
+            </button>
+            <button onclick="filterPublications('pending')">
+                <i class="fas fa-clock"></i> Pendientes
+            </button>
+            <button onclick="filterPublications('published')">
+                <i class="fas fa-check-circle"></i> Publicadas
+            </button>
+            <button onclick="filterPublications('rejected')">
+                <i class="fas fa-times-circle"></i> Rechazadas
+            </button>
         </div>
+    
+        <!-- Filtro por Fecha -->
         <div class="date-filter">
-            <label for="startDate">Fecha de Inicio:</label>
-            <input type="date" id="startDate">
-            <label for="endDate">Fecha de Fin:</label>
-            <input type="date" id="endDate">
-            <button onclick="filterByDate()">Filtrar por Fecha</button>
+            <div class="date-input">
+                <i class="fas fa-calendar-alt"></i>
+                <input type="text" id="startDate" class="datepicker" placeholder="Fecha de Inicio">
+            </div>
+            <div class="date-input">
+                <i class="fas fa-calendar-alt"></i>
+                <input type="text" id="endDate" class="datepicker" placeholder="Fecha de Fin">
+            </div>
+            <button onclick="filterByDate()"><i class="fas fa-filter"></i> Filtrar</button>
         </div>
+    </div>
+
+ 
+    <div class="publications-list">
+        <h2>Publicaciones Registradas</h2>
+
         <div id="publications">
             <!-- Ejemplo de Publicación -->
             <div class="publication-item" data-status="pending" data-date="2025-01-31">
@@ -373,6 +395,15 @@ function openTab(tabName) {
     tabButtons.forEach(button => button.classList.remove('active'));
     document.querySelector(`.tab-button[onclick="openTab('${tabName}')"]`).classList.add('active');
 }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+    // Inicializa los campos con flatpickr
+    flatpickr(".datepicker", {
+        dateFormat: "Y-m-d",  // Formato de la fecha
+        locale: "es"          // Configura el calendario en español
+    });
 </script>
 </body>
 </html>
